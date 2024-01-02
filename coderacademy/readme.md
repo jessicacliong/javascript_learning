@@ -1,4 +1,4 @@
-## Coder Academy Course Lesson Repos
+# Coder Academy Course Lesson Repos
 
 - 1: Introducttion to JavaScript
 - 2: JS Control Structures and Loops
