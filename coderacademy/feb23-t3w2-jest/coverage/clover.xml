@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1693015284788" clover="3.2.0">
+  <project timestamp="1693015284788" name="All files">
+    <metrics statements="12" coveredstatements="7" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="2" elements="18" coveredelements="10" complexity="0" loc="12" ncloc="12" packages="1" files="1" classes="1"/>
+    <file name="diceRolling.js" path="/Users/jessliong/Documents/GitHub/feb23-t3w2-jest/src/diceRolling.js">
+      <metrics statements="12" coveredstatements="7" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="2"/>
+      <line num="8" count="112" type="stmt"/>
+      <line num="10" count="112" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="30" count="2" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="39" count="0" type="stmt"/>
+      <line num="48" count="0" type="stmt"/>
+      <line num="53" count="0" type="stmt"/>
+      <line num="55" count="0" type="stmt"/>
+      <line num="58" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
