@@ -308,7 +308,8 @@ When we log this code, we see that we're not outputing a result in this function
 
 /* 
 
-If we run the code with console.log function outside of the anotherFunc function, the output does not show as it did previously as, myCoolFunction is waiting on anotherFunc to execute and anotherFunc is also waiting for other asyncrhonous functions to execute. 
+If we run the code with console.log function outside of the anotherFunc function, the output does not show as it did in the previous example, 
+as myCoolFunction is waiting on anotherFunc to execute and anotherFunc is also waiting for other asyncrhonous functions to execute. 
 For the code to execute, we need to put the console.log statement within the anotherFunc function, not outside.  
 
 Just because the anotherFunc() code is run at the bottom of the code, doesn't mean that the console.log(myUsers.userList) line of code is going to wait for those promises to resolve. 
@@ -360,3 +361,209 @@ But the code below will.
 // }
 
 // getAllUserEmails();
+
+
+// -------------------2nd parameter of Fetch is an object-------------------------
+
+// const getDadJoke = async () => {
+
+//      const response = await fetch("https://icanhazdadjoke.com/", {
+//           method: "GET",
+//           headers: {
+//                Accept: "application/json"
+//           }
+//      });
+
+//      const jsonJokeData = await response.json();
+
+//      console.log(jsonJokeData);
+// }
+
+// getDadJoke();
+
+
+/* When we console.log this we get the full json response from the API. 
+We can also log just the joke from the API in the console log by calling on 
+.joke */
+
+// const getDadJoke = async () => {
+
+//      const response = await fetch("https://icanhazdadjoke.com/", {
+//           method: "GET",
+//           headers: {
+//                Accept: "application/json"
+//           }
+//      });
+
+//      const jsonJokeData = await response.json();
+
+//      console.log(jsonJokeData.joke);
+// }
+
+// getDadJoke();
+
+/* We can also log in the joke as a text instead of a json form with the id, joke and the status */
+
+// const getDadJoke = async () => {
+
+//      const response = await fetch("https://icanhazdadjoke.com/", {
+//           method: "GET",
+//           headers: {
+//                Accept: "text/plain"
+//           }
+//      });
+
+//      const textJokeData = await response.text();
+
+//      console.log(textJokeData);
+// }
+
+// getDadJoke();
+
+/* To post a joke to the API, we can change the method to "POST" and determine the content-type to post to the API endpoint */
+
+
+// const jokeObject = {
+//      id: "0oO71TSv4Ed",
+//      joke: "Why was it called the dark ages? Because of all the 
+//      knights."
+// }
+
+// const postData = async (jokeObj) => {
+
+//      const response = fetch("https://httpbin.org/post", {
+//           method: "POST",
+//           headers: {
+//                "Content-Type": "application/json"
+//           },
+//           body: JSON.stringify(jokeObj)
+//      });
+//      const jsonResponse = await response.json();
+
+//      console.log(jsonResponse.headers);
+// }
+
+// postData(jokeObject);
+
+
+
+/* To request a joke object from the API, we can code up the following
+async and await function. And we can specify the exact search of the joke we would like in the function */
+
+
+// const requestJoke = async (firstName, lastName) => {
+
+//      const response = await fetch(`http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`);
+//      const jsonResponse = await response.json();
+
+//      console.log(jsonResponse.value);
+// }
+
+// requestJoke("Clint", "Eastwood");
+
+
+
+/* To obtain just the joke, we can type the joke object after value in the console log of the json response. */
+
+
+// const requestJoke = async (firstName, lastName) => {
+
+//      const response = await fetch(`http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}`);
+//      const jsonResponse = await response.json();
+
+//      console.log(jsonResponse.value.joke);
+// }
+
+// requestJoke("Clint", "Eastwood");
+
+
+/* We can change around the name of the joke request to what's suited to us.
+*/
+
+// -------------------------Abstract into functions-------------------------
+
+/* We can request a joke from a form based on a submit event */
+
+// const getDataFromForm = async () => {
+//      const requestObj = {
+//           firstName: "Bruce", 
+//           lastNAme: "Lee",
+//           categories: ["nerdy"]
+//      };
+//      return requestObj;
+// }
+
+// const buildRequestUrl = (requestData) => {
+//      return `http://api.icndb.com/jokes/random?firstName=${requestData.firstName}&lastName=${requestData.lastName}&limitTo=${requestData.categories}`;
+// }
+
+// const requestJoke = async (firstName, lastName) => {
+
+//      const response = await fetch(`http://api.icndb.com/jokes/random?firstName=${firstName}&lastName=${lastName}&limitTo=[nerdy]`);
+//      const jsonResponse = await response.json();
+
+//      console.log(jsonResponse.value.joke);
+// }
+
+// requestJoke("Bruce", "Lee");
+
+
+/* We can just use url in the requestJoke function and this will print more than 1 joke */
+
+// const getDataFromForm = async () => {
+//      const requestObj = {
+//           firstName: "Bruce", 
+//           lastNAme: "Lee",
+//           categories: ["nerdy"]
+//      };
+//      return requestObj;
+// }
+
+// const requestJoke = async (url) => {
+//      const response = await fetch(url);
+//      const jsonResponse = await response.json();
+//      const jokeArray = jsonResponse.value
+//      console.log(joke);
+// }
+
+// requestJoke("Bruce", "lee");
+
+/* If we were to print just one joke, we could code it up as follows below. We can also post the joke to a page instead of just console logging it: */
+
+
+// const buildRequestUrl = (requestData) => {
+//      return `http://api.icndb.com/jokes/random?firstName=${requestData.firstName}&lastName=${requestData.lastName}&limitTo=${requestData.categories}`;
+// }
+
+// const requestJoke = async (url) => {
+//      const response = await fetch(url);
+//      const jsonResponse = await response.json();
+//      const joke = jsonResponse.value.joke;
+//      postJokeToPage(joke);
+// }
+
+// const postJokeToPage = (joke) => {
+//      console.log(joke);
+// }
+
+// // Procedural "workflow" function
+// const processJokeRequest = async () => {
+//      const requestData = getDataFromForm();
+//      const requestUrl = buildRequestUrl(requestData);
+//      await requestJoke(requestUrl);
+//      console.log("finished!");
+// }
+
+// processJokeRequest();
+
+
+/* 
+This will be the function that would be called by an event listener instead of the get data from form, say if there was a click on the submit button or the submit value.
+So we've broken out all the commands into functions so they could work one at a time. This is called a procedural workflow.
+
+Abstracting this lets us build different request url if we need to by getting different data and we can also asign different names to the request 
+
+And the procedural workflow function pulls it all together and the function is called at the very bottom of the code. 
+
+*/
+
